@@ -9,7 +9,7 @@
 import Foundation
 
 var defaultKit:LRUCacheKit?
-var defaultCacheNumber:Int = 25
+let defaultCacheNumber:Int = 25
 
 class LRUCacheKit {
     
@@ -65,6 +65,11 @@ class LRUCacheKit {
         var kit : LRUCacheKit = LRUCacheKit.defaultCacheKit();
         var cache : LRUCacheObject?
         cache = kit.cachePool[key]
+        
+        if cache != nil {
+            kit.removeCacheByKey(key)
+            kit.addNewCache(cache, byKey: key)
+        }
         
         return cache?.object
     }
